@@ -1,7 +1,7 @@
 ---
 name: 'Issue template '
 about: 'As a Role '
-title: ''
+title: 'USER STORY: <Title>'
 labels: ''
 assignees: ''
 
