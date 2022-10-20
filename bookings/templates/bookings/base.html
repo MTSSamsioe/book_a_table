@@ -23,10 +23,10 @@
           </button>
           <div class="collapse navbar-collapse " id="navbarNavAltMarkup">
             <div class="navbar-nav ">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
-              <a class="nav-link" href="#">Menu</a>
-              <a class="nav-link" href="#">Book a table</a>
-              <a class="nav-link disabled">Login</a>
+              <a class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}" aria-current="page" href="{% url 'home'%}">Home</a>
+              <a class="nav-link {% if request.resolver_match.url_name == 'menu' %}active{% endif %}" href="{% url 'menu'%}">Menu</a>
+              <a class="nav-link {% if request.resolver_match.url_name == 'view_reservation' %}active{% endif %}" href="{% url 'view_reservation'%}">Book a table</a>
+              <a class="nav-link {% if request.resolver_match.url_name == 'log' %}active{% endif %}" href="{% url 'log'%}">Login</a>
             </div>
           </div>
         </div>
