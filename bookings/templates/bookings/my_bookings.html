@@ -1,0 +1,30 @@
+{% extends 'bookings/base.html' %}
+
+{% block content%}
+<h1 class="h1">My bookings</h1>
+{{ reservations }}
+
+{% for reservation in reservations %}
+<div class="card" style="width: 18rem;">
+    <img src="https://res.cloudinary.com/dy2uthyxz/image/upload/v1666268050/pexels-creative-vix-370984_zgwft4.jpg" class="card-img-top" alt="picture of wineglass">
+    <div class="card-body">
+      <h5 class="card-title">Reservation at the Fuzzy Duck </h5>
+      <p class="card-text">Below are some information about your reservvation</p>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item"> {{reservation.first_name}} {{reservation.last_name}}</li>
+      <li class="list-group-item">{{reservation.date}} at {{reservation.start_time}}</li>
+      <li class="list-group-item">For {{reservation.number_of_guests}} guests </li>
+    </ul>
+    <div class="card-body text-center">
+        <button class="btn btn-danger mb-1 " ><a href="#" class=" link-light">Delete Reservation</a></button>
+        <button class="btn btn-success mb-1 "><a href="#" class=" link-light">Edit Reservation</a></button>
+      
+    </div>
+  </div>
+
+  {% endfor %}
+
+
+{{ reservations }}
+{% endblock %}

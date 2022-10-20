@@ -15,12 +15,12 @@ class Reservation(models.Model):
     start_time = models.TimeField()
     number_of_guests = models.IntegerField(default = 2, validators=[MaxValueValidator(12),
             MinValueValidator(1)])
-    featured_image = CloudinaryField('image', default = 'placeholder')
+    #featured_image = CloudinaryField('image', default = 'placeholder')
     status = models.IntegerField(choices = STATUS, default = 0)
 
     class Meta:
         ordering = ['-date']
 
     def __str__(self):
-        return self.title
+        return self.first_name
 
