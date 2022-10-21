@@ -25,5 +25,6 @@ urlpatterns = [
     path('menu/', menu, name = 'menu'),
     path('log/', log, name = 'log'),
     path('my_bookings/add', add_reservation, name = 'add'),
+    path('edit/<reservation_id>', edit_reservation, name = 'edit'),
     
 ]

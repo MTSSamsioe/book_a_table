@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Reservation
 from .forms import ReservationForm
 
@@ -23,24 +23,31 @@ def view_reservation(request):
 def add_reservation(request):
     
     if request.method == 'POST':
-        first_name = request.POST.get('first_name')
-        last_name = request.POST.get('last_name')
-        email = request.POST.get('email')
-        date = request.POST.get('date')
-        number_of_guests = request.POST.get('number_of_guests')
-        Reservation.objects.create(
-            first_name = first_name,
-            last_name = last_name,
-            email = email,
-            date = date,
-            number_of_guests = number_of_guests
-            )
-        return redirect('/my_bookings/')
+        form = ReservationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/my_bookings/')
     form = ReservationForm()
-    context = {'form': form}
+    context = {
+        'form': form
+    }
 
     return render(request, 'bookings/my_bookings.html', context)
 
+def edit_reservation(request, reservation_id):
+    reservation = get_object_or_404(Reservation, id = reservation_id)
+    if request.method == 'POST':
+        form = ReservationForm(request.POST, instance = reservation)
+        if form.is_valid():
+            form.save()
+            return redirect('/my_bookings/')
+    
+    form = ReservationForm(instance = reservation)
+    context = {
+        
+        'form': form
+    }
+    return render(request, 'bookings/edit.html', context)
 
 def menu(request):
     return render(request, 'bookings/menu.html')
