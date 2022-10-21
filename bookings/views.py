@@ -12,6 +12,7 @@ def view_reservation(request):
     
     reservations = Reservation.objects.filter(status= 1)
     form = ReservationForm()
+    
     context = {
         'reservations': reservations,
         'form': form
@@ -34,7 +35,7 @@ def add_reservation(request):
             date = date,
             number_of_guests = number_of_guests
             )
-        #return redirect('bookings/my_bookings.html')
+        return redirect('/my_bookings/')
     form = ReservationForm()
     context = {'form': form}
 
