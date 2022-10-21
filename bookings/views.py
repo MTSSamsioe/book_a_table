@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Reservation
+from .forms import ReservationForm
 
 # Create your views here.
 
@@ -10,13 +11,16 @@ def home(request):
 def view_reservation(request):
     
     reservations = Reservation.objects.filter(status= 1)
+    form = ReservationForm()
     context = {
-        'reservations': reservations
+        'reservations': reservations,
+        'form': form
     }
     
     return render(request, 'bookings/my_bookings.html', context)
 
 def add_reservation(request):
+    
     if request.method == 'POST':
         first_name = request.POST.get('first_name')
         last_name = request.POST.get('last_name')
@@ -31,7 +35,11 @@ def add_reservation(request):
             number_of_guests = number_of_guests
             )
         #return redirect('bookings/my_bookings.html')
-    return render(request, 'bookings/my_bookings.html')
+    form = ReservationForm()
+    context = {'form': form}
+
+    return render(request, 'bookings/my_bookings.html', context)
+
 
 def menu(request):
     return render(request, 'bookings/menu.html')
