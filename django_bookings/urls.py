@@ -26,5 +26,6 @@ urlpatterns = [
     path('log/', log, name = 'log'),
     path('my_bookings/add', add_reservation, name = 'add'),
     path('edit/<reservation_id>', edit_reservation, name = 'edit'),
+    path('delete/<reservation_id>', delete_reservation, name = 'delete'),
     
 ]

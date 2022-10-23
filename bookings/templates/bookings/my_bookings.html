@@ -49,9 +49,30 @@
                 <li class="list-group-item">For {{reservation.number_of_guests}} guests </li>
               </ul>
               <div class="card-body text-center">
-                  <button class="btn btn-danger mb-1 " ><a href="#" class=" link-light">Delete Reservation</a></button>
+                  <button class="btn btn-danger mb-1 " type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Delete</button>
+
+
                   <button class="btn btn-success mb-1 "><a href="/edit/{{ reservation.id}}" class=" link-light">Edit Reservation</a></button>
-                
+                  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h1 class="modal-title fs-5" id="exampleModalLabel">Warning!</h1>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          Are you sure you want to delete your reservation?
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
+                          <button type="button" class="btn btn-danger" >
+                            <a href="/delete/{{ reservation.id}}" class=" link-light">Delete</a>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
               </div>
           </div>
         </div>
