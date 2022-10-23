@@ -10,7 +10,7 @@ def home(request):
 
 def view_reservation(request):
     
-    reservations = Reservation.objects.filter(status= 1)
+    reservations = Reservation.objects.filter(status= 1, user = request.user)
     form = ReservationForm()
     
     context = {
@@ -25,7 +25,10 @@ def add_reservation(request):
     if request.method == 'POST':
         form = ReservationForm(request.POST)
         if form.is_valid():
-            form.save()
+            # associate user with istance 
+            creator = form.save(commit=False)
+            creator.user = request.user 
+            creator.save()
             return redirect('/my_bookings/')
     form = ReservationForm()
     context = {
