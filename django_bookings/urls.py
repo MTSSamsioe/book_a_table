@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from bookings.views import *
 
 
@@ -27,5 +27,6 @@ urlpatterns = [
     path('my_bookings/add', add_reservation, name = 'add'),
     path('edit/<reservation_id>', edit_reservation, name = 'edit'),
     path('delete/<reservation_id>', delete_reservation, name = 'delete'),
+    path('accounts/', include('allauth.urls')),
     
 ]
