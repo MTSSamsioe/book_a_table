@@ -1,5 +1,5 @@
 
-{% extends 'bookings/base.html' %}
+{% extends 'account/base.html' %}
 
 {% load i18n %}
 {% load account socialaccount %}
@@ -9,25 +9,24 @@
 {% block content %}
 
 <div class="container">
-    <div class="row">
-        <div class="col-md-8 mt-3 offset-md-2">
+    <div class="row text-center ">
+        <div class="col-md-8 mt-3 offset-md-2 fs-4 text">
             <h3>{% trans "Sign In" %}</h3>
 
-            <p>{% blocktrans %}Welcome back to the code|star blog. To leave a comment or like a post, please log in. If
-                you
-                have not created an account yet, then <a class="link" href="{{ signup_url }}">sign up</a>
-                first.{% endblocktrans %}</p>
+            <p>{% blocktrans %} 
+                If you don´t have an account please click <a class="link" href="{{ signup_url }}">here</a>
+                to sign up.{% endblocktrans %}</p>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-8 mt-3 offset-md-2">
+    <div class="row mb-3 ">
+        <div class="col-md-6 offset-md-3 mt-3  border border-success rounded-5 pb-3 pt-3 ">
             <form class="login" method="POST" action="{% url 'account_login' %}">
                 {% csrf_token %}
                 {{ form.as_p }}
                 {% if redirect_field_value %}
                 <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
                 {% endif %}
-                <button class="btn btn-signup right" type="submit">{% trans "Sign In" %}</button>
+                <button class="btn btn-success" type="submit">{% trans "Sign In" %}</button>
             </form>
         </div>
     </div>
