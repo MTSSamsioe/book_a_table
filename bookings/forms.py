@@ -34,8 +34,8 @@ class CommentForm(forms.ModelForm):
         fields = ['text', 'stars', 'image']
 
         widgets = {
-            'text': forms.TextInput(attrs= {'class': 'form-control'}),
-            'stars': forms.TextInput(attrs= {'class': 'form-control'}),
+            'text': forms.Textarea(attrs= {'class': 'form-control'}),
+            'stars': forms.NumberInput(attrs= {'class': 'form-control'}),
             
             
         }

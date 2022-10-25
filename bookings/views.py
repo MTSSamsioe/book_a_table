@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.http import JsonResponse
 from .models import Reservation, Comments
 from .forms import ReservationForm , CommentForm
 
@@ -25,6 +26,9 @@ def view_reservation(request):
     }
     
     return render(request, 'bookings/my_bookings.html', context)
+
+def check(request):
+    return JsonResponse({'availeble': True})
 
 def add_reservation(request):
     

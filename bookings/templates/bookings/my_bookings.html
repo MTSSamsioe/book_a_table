@@ -85,6 +85,8 @@
   <br>
   <hr>
   <br>
-
+<script>
+  fetch("/check").then( response => response.json() ).then( data => console.log(data))
+</script>
 
 {% endblock %}

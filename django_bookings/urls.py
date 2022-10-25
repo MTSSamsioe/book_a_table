@@ -23,6 +23,7 @@ urlpatterns = [
     path('', home, name = 'home'),
     path('add_comment', add_comment, name = 'add_comment'),
     path('my_bookings/', view_reservation, name = 'view_reservation'),
+    path('check/', check, name = 'check' ),
     path('menu/', menu, name = 'menu'),
     path('log/', log, name = 'log'),
     path('my_bookings/add', add_reservation, name = 'add'),
