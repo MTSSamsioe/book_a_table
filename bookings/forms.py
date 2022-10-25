@@ -1,5 +1,5 @@
 from django import forms
-from .models import Reservation
+from .models import Reservation, Comments
 
 
 
@@ -22,4 +22,20 @@ class ReservationForm(forms.ModelForm):
             'date': DateInput(attrs= {'class': 'form-control'}),
             'time': TimeInput(format='%H:%M', attrs={'class': 'form-control'}),
             'number_of_guests': forms.NumberInput(attrs= {'class': 'form-control'})
+        }
+
+# Form to add comment
+
+
+class CommentForm(forms.ModelForm):
+    
+    class Meta:
+        model = Comments
+        fields = ['text', 'stars', 'image']
+
+        widgets = {
+            'text': forms.TextInput(attrs= {'class': 'form-control'}),
+            'stars': forms.TextInput(attrs= {'class': 'form-control'}),
+            
+            
         }

@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import os
 import dj_database_url
+import cloudinary_storage
 
 if os.path.isfile("env.py"):
    import env
@@ -48,9 +49,10 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'cloudinary',
     'cloudinary_storage',
     'django.contrib.staticfiles',
-    'cloudinary',
+    
     
 ]
 

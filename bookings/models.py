@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
 from django.core.validators import MinValueValidator, MaxValueValidator
-
+import datetime
 import django.utils.timezone
 
 
@@ -28,3 +28,20 @@ class Reservation(models.Model):
     def __str__(self):
         return self.first_name
 
+
+COMMENT_OK =  ((0, 'Draft'), (1, 'Published'))
+
+class Comments(models.Model):
+    user = models.ForeignKey(User, on_delete = models.DO_NOTHING , null=True)
+    created = models.DateTimeField(auto_now_add = True)
+    image  = CloudinaryField('image', default= 'placeholder')
+    text = models.TextField()
+    approved = models.IntegerField(choices = COMMENT_OK, default= 0)
+    stars = models.IntegerField(default = 3, validators=[MaxValueValidator(5),
+            MinValueValidator(1)])
+
+    class Meta:
+        ordering = ['-created']
+
+    def __str__(self):
+        return f" {self.user} on {self.created}"

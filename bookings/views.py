@@ -1,11 +1,17 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Reservation
-from .forms import ReservationForm
+from .models import Reservation, Comments
+from .forms import ReservationForm , CommentForm
 
 # Create your views here.
 
 def home(request):
-    return render(request, 'bookings/index.html')
+    form = CommentForm()
+    comments = Comments.objects.filter(approved = 1)
+    context = {
+        'form': form,
+        'comments': comments,
+    }
+    return render(request, 'bookings/index.html', context)
 
 
 def view_reservation(request):
@@ -63,3 +69,21 @@ def menu(request):
 
 def log(request):
     return render(request, 'bookings/log.html')
+
+
+# comments
+
+def add_comment(request):    
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            # associate user with istance 
+            creator = form.save(commit=False)
+            creator.user = request.user 
+            creator.save()
+            
+    form = CommentForm()
+    context = {
+        'form': form
+    }
+    return render(request, 'bookings/index.html', context)

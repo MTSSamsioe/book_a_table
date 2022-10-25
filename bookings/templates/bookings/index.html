@@ -24,25 +24,72 @@
 </div>
 <div class="margin"></div>
 <div >
-    <div class= "container-fluid ">
-        <div class="row ">
-            <div class="col justify">
-                <div class="h1 text-center justify-center">Testimonials from customers</div>
-                <div class="p text-center"> Great food and great service</div>
+    <div class= "container ">
+        <div class="row text-center">
+            <div class="col ">
+                <div class="h1">Review comments</div>
+                <p>
+                    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                      Leave a comment 
+                    </button>
+                  </p>
+                  
             </div>
         </div>
     </div>
-</div>
-<div >
-    <div class= "container-fluid ">
-        <div class="row ">
-            <div class="col justify">
-                <div class="h1 text-center">Comments:</div>
-                <div class="p text-center"> </div>
+    
+    
+    <div class="row ">
+        <div class="col-md-6 offset-md-3">
+            <div class="collapse" id="collapseExample">
+                <div class="card card-body">
+
+                {% if user.is_authenticated %}
+                  <p>
+                    Please leave a comment of your experience. If you have a picture you can also uppload it
+                  </p>
+                  <form method="POST" action="add_comment">
+                    <div class="form-group col-sm"></div>
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                  </form>
+                {% else%}
+                  <p>Plese Log in or sign up to leave a review</p>
+
+                {% endif %}
+                </div>
             </div>
         </div>
     </div>
+
+    <div class="row ">
+        <div class="div">TESTING</div>
+            {% for comment in comments %}
+                <div class="col-md-6 offset-md-3">
+                    <div class="card" style="width: 18rem;">
+                        {% if "placeholder" in Comments_image.url  %}
+                            <img src="https://res.cloudinary.com/dy2uthyxz/image/upload/v1666698200/pexels-victor-freitas-744780_piixal.jpg" class="card-img-top" alt="photo plate">
+                        {% else%}
+                        <img src="{{ Comments.image }}" class="card-img-top" alt="photo plate">
+                        {%endif%}
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">{{ comment.user}}</p>
+                    </div>
+                    <div class="div"> {{comment.stars}}</div>
+                    <div class="div">  {{ comment.text}}</div>
+                    
+                    
+                </div>
+            {% endfor%}
+        </div>
+    </div>
+    
+    </div>
 </div>
+
 
 
 {% endblock %}
