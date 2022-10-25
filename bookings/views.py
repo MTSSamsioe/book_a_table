@@ -75,12 +75,17 @@ def log(request):
 
 def add_comment(request):    
     if request.method == 'POST':
-        form = CommentForm(request.POST)
+        form = CommentForm(request.POST, request.FILES)
         if form.is_valid():
             # associate user with istance 
             creator = form.save(commit=False)
             creator.user = request.user 
             creator.save()
+            
+            #print(form.cleaned_data)
+        else:
+            # ta bort eventuellt
+            print(form.errors)
             
     form = CommentForm()
     context = {
