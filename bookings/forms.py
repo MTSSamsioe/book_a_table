@@ -21,7 +21,7 @@ class ReservationForm(forms.ModelForm):
             'email': forms.EmailInput(attrs= {'class': 'form-control'}),
             'date': DateInput(attrs= {'class': 'form-control'}),
             'time': TimeInput(format='%H:%M', attrs={'class': 'form-control'}),
-            'number_of_guests': forms.NumberInput(attrs= {'class': 'form-control'})
+            'number_of_guests': forms.Select(attrs= {'class': 'form-select'}),
         }
 
 # Form to add comment

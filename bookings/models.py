@@ -7,7 +7,7 @@ import django.utils.timezone
 
 
 STATUS =  ((0, 'Draft'), (1, 'Published'))
-
+GUESETS = ((1, '1'), (2, '2'), (3, '3'), (4, '4'), (5, '5'), (6, '6'), (7, '7'), (8, '8'), (9, '9'), (10, '10'), (11, '11'), (12, '12'),)
 
 # Create your models here.
 class Reservation(models.Model):
@@ -17,9 +17,7 @@ class Reservation(models.Model):
     email = models.EmailField()
     date = models.DateField()
     time = models.TimeField()
-    number_of_guests = models.IntegerField(default = 2, validators=[MaxValueValidator(12),
-            MinValueValidator(1)])
-    #featured_image = CloudinaryField('image', default = 'placeholder')
+    number_of_guests = models.IntegerField(default = 2, choices = GUESETS)
     status = models.IntegerField(choices = STATUS, default = 1)
 
     class Meta:
