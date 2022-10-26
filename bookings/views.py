@@ -85,7 +85,7 @@ def add_comment(request):
             creator = form.save(commit=False)
             creator.user = request.user 
             creator.save()
-            
+            return redirect('/')
             #print(form.cleaned_data)
         else:
             # ta bort eventuellt
