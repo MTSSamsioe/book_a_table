@@ -57,13 +57,14 @@
                     </div>
                   </form>
                 {% else%}
-                  <p>Plese Log in or sign up to leave a review</p>
+                  <p>Plese <a href="{% url 'account_login'%}">log in</a> or <a href="{% url 'account_signup'%}">sign up</a> to leave a review</p>
 
                 {% endif %}
                 </div>
             </div>
         </div>
     </div>
+  
     <div class="container "></div>
         <div class=" row justify-content-sm-center ">
             

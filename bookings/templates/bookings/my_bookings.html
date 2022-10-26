@@ -2,86 +2,92 @@
 
 {% block content%}
 <h1 class="h1">My bookings</h1>
-
-<div class="container text-center">
-  <div class="row">
-    <div class="col">
-      <p>
-        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
-          Create a reservation
-        </button>
-      </p>
-      <div style="min-height: 50px;">
-        <div class="collapse collapse-horizontal" id="collapseWidthExample">
-          <div class="card card-body">
-            
-            <form method="POST" action="add">
-              <div class="form-group col-sm"></div>
-              {% csrf_token %}
-              {{ form.as_p }}
-              <button type="submit" class="btn btn-primary">Submit</button>
-              </div>
-            </form>
+{% if user.is_authenticated %}
+  <div class="container text-center">
+    <div class="row">
+      <div class="col">
+        <p>
+          <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+            Create a reservation
+          </button>
+        </p>
+        <div style="min-height: 50px;">
+          <div class="collapse collapse-horizontal" id="collapseWidthExample">
+            <div class="card card-body">
+              
+              <form method="POST" action="add">
+                <div class="form-group col-sm"></div>
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-<br>
-<hr>
-<br>
-
-<div class="container">
-  <div class="row gy-3 ">
-    
-      {% for reservation in reservations %}
-        <div class="col-sm">
-          <div class="card" style="width: 18rem;">
-              <img src="https://res.cloudinary.com/dy2uthyxz/image/upload/v1666268050/pexels-creative-vix-370984_zgwft4.jpg" class="card-img-top" alt="picture of wineglass">
-              <div class="card-body">
-                <h5 class="card-title">Reservation at The Fuzzy Duck </h5>
-                <p class="card-text">Below are some information about your reservvation</p>
-              </div>
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item"> {{reservation.first_name}} {{reservation.last_name}}</li>
-                <li class="list-group-item">{{reservation.date}} at {{reservation.start_time}}</li>
-                <li class="list-group-item">For {{reservation.number_of_guests}} guests </li>
-              </ul>
-              <div class="card-body text-center">
-                  <button class="btn btn-danger mb-1 " type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    Delete</button>
+  <br>
+  <hr>
+  <br>
 
 
-                  <button class="btn btn-success mb-1 "><a href="/edit/{{ reservation.id}}" class=" link-light">Edit Reservation</a></button>
-                  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h1 class="modal-title fs-5" id="exampleModalLabel">Warning!</h1>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                          Are you sure you want to delete your reservation?
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
-                          <button type="button" class="btn btn-danger" >
-                            <a href="/delete/{{ reservation.id}}" class=" link-light">Delete</a>
-                          </button>
+
+  <div class="container">
+    <div class="row gy-3 ">
+      
+        {% for reservation in reservations %}
+          <div class="col-sm">
+            <div class="card" style="width: 18rem;">
+                <img src="https://res.cloudinary.com/dy2uthyxz/image/upload/v1666268050/pexels-creative-vix-370984_zgwft4.jpg" class="card-img-top" alt="picture of wineglass">
+                <div class="card-body">
+                  <h5 class="card-title">Reservation at The Fuzzy Duck </h5>
+                  <p class="card-text">Below are some information about your reservvation</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"> {{reservation.first_name}} {{reservation.last_name}}</li>
+                  <li class="list-group-item">{{reservation.date}} at {{reservation.start_time}}</li>
+                  <li class="list-group-item">For {{reservation.number_of_guests}} guests </li>
+                </ul>
+                <div class="card-body text-center">
+                    <button class="btn btn-danger mb-1 " type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                      Delete</button>
+
+
+                    <button class="btn btn-success mb-1 "><a href="/edit/{{ reservation.id}}" class=" link-light">Edit Reservation</a></button>
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Warning!</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                            Are you sure you want to delete your reservation?
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-danger" >
+                              <a href="/delete/{{ reservation.id}}" class=" link-light">Delete</a>
+                            </button>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-              </div>
+                </div>
+            </div>
           </div>
-        </div>
-        {% endfor %}
+          {% endfor %}
+        
       
-    
+    </div>
   </div>
+{% else %}
+<div class="text-center mt-3 mb-3">
+  <h4 class="h4"> Please <a href="{% url 'account_login'%}">log in</a> or <a href="{% url 'account_signup'%}">sign up</a> to create and see your reservations  </h4>
 </div>
-  
+{% endif %}
   <br>
   <hr>
   <br>

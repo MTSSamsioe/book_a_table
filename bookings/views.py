@@ -2,7 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import JsonResponse
 from .models import Reservation, Comments
 from .forms import ReservationForm , CommentForm
-
+from django.contrib import messages
+from django.contrib.auth.models import User
 # Create your views here.
 
 def home(request):
@@ -16,16 +17,18 @@ def home(request):
 
 
 def view_reservation(request):
-    
-    reservations = Reservation.objects.filter(status= 1, user = request.user)
-    form = ReservationForm()
-    
-    context = {
-        'reservations': reservations,
-        'form': form
-    }
-    
-    return render(request, 'bookings/my_bookings.html', context)
+    if request.user.is_authenticated:
+        reservations = Reservation.objects.filter(status= 1, user = request.user)
+        form = ReservationForm()
+        
+        context = {
+            'reservations': reservations,
+            'form': form
+        }
+        
+        return render(request, 'bookings/my_bookings.html', context)
+    else:
+        return render(request, 'bookings/my_bookings.html')
 
 def check(request):
     return JsonResponse({'availeble': True})
@@ -39,7 +42,10 @@ def add_reservation(request):
             creator = form.save(commit=False)
             creator.user = request.user 
             creator.save()
+            messages.success(request, 'Your reservation was created successfully')
             return redirect('/my_bookings/')
+        else:
+            messages.error(request, 'Something went wrong! Please try again')
     form = ReservationForm()
     context = {
         'form': form
@@ -53,8 +59,10 @@ def edit_reservation(request, reservation_id):
         form = ReservationForm(request.POST, instance = reservation)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Your reservation was updated successfully')
             return redirect('/my_bookings/')
-    
+        else:
+            messages.error(request, 'Something went wrong! Please try again')
     form = ReservationForm(instance = reservation)
     context = {
         
@@ -65,6 +73,7 @@ def edit_reservation(request, reservation_id):
 def delete_reservation(request, reservation_id):
     reservation = get_object_or_404(Reservation, id = reservation_id)
     reservation.delete()
+    messages.success(request, 'Your reservation was deleted successfully')
     return redirect('/my_bookings/')
 
 
@@ -85,11 +94,12 @@ def add_comment(request):
             creator = form.save(commit=False)
             creator.user = request.user 
             creator.save()
+            messages.success(request, 'Your comment has been saved')
             return redirect('/')
             #print(form.cleaned_data)
         else:
             # ta bort eventuellt
-            print(form.errors)
+            messages.error(request, 'Something went wrong! Please try again')
             
     form = CommentForm()
     context = {
