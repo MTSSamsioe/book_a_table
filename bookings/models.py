@@ -30,6 +30,7 @@ class Reservation(models.Model):
 
 
 COMMENT_OK =  ((0, 'Draft'), (1, 'Published'))
+STARS = ((1, '1'), (2, '2'), (3, '3'), (4, '4'), (5, '5'), )
 
 class Comments(models.Model):
     user = models.ForeignKey(User, on_delete = models.DO_NOTHING , null=True)
@@ -37,8 +38,7 @@ class Comments(models.Model):
     image  = CloudinaryField('image', default= 'placeholder')
     text = models.TextField()
     approved = models.IntegerField(choices = COMMENT_OK, default= 0)
-    stars = models.IntegerField(default = 3, validators=[MaxValueValidator(5),
-            MinValueValidator(1)])
+    stars = models.IntegerField(default = 3, choices= STARS)
 
     class Meta:
         ordering = ['-created']

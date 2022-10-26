@@ -31,11 +31,12 @@ class CommentForm(forms.ModelForm):
     
     class Meta:
         model = Comments
-        fields = ['text', 'stars', 'image']
+        fields = ['text','stars', 'image']
 
         widgets = {
             'text': forms.Textarea(attrs= {'class': 'form-control'}),
-            'stars': forms.NumberInput(attrs= {'class': 'form-control'}),
+            'stars': forms.Select(attrs= {'class': 'form-select'}),
+            'image': forms.FileInput(attrs= {'class': 'form-control'}),
             
             
         }

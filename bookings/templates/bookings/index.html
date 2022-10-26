@@ -78,10 +78,10 @@
                         {%endif%}
 
                     </div>
-                    <div class="col-sm-8 " style=" border-radius: 0 15px 15px 0;" >
+                    <div class="col-sm-8 mt-3 mb-3" style=" border-radius: 0 15px 15px 0;" >
                         <ul style="list-style-type: none;">
                             <li><strong>Author:</strong> {{ comment.user}} <hr></li>
-                            <li> <strong>Review stars:</strong> {{comment.stars}} <hr></li>
+                            <li> <strong>Review stars:</strong> {{comment.stars}} <span class="stars"><i class="fa-solid fa-star" style="color: #ffe234; ; font-size: larger;"></i></span><hr></li>
                             <li><strong>Comment:</strong> <br> {{ comment.text}} <hr></li>
                             <li><strong>Published:</strong> {{ comment.created}} </li>
                         </ul>
@@ -97,7 +97,5 @@
     
     </div>
 </div>
-
-
 
 {% endblock %}
