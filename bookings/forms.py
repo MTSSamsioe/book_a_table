@@ -1,6 +1,8 @@
 from django import forms
 from .models import Reservation, Comments
-
+import datetime
+from django.utils import timezone
+from django.contrib import messages
 
 class ReservationForm(forms.ModelForm):
 
@@ -16,8 +18,18 @@ class ReservationForm(forms.ModelForm):
             'email': forms.EmailInput(attrs={'class': 'form-control'}),
             'number_of_guests': forms.Select(attrs={'class': 'form-select'}),
             'date_time': forms.DateTimeInput(format='%d/%m/%Y %H:%M', attrs={
-                    'class': 'form-control', 'type': 'datetime-local'}),
+                    'class': 'form-control', 'type': 'datetime-local',
+                    'id': 'date_time_input'}),
         }
+
+    def clean_date_time(self, *args, **kwargs):
+        date_time = self.cleaned_data.get('date_time')
+        if date_time > timezone.now():
+            return  date_time
+        else:
+            #messages.error(request, 'The reservation date can not be before todays date and time')
+            raise forms.ValidationError('Reservation can not be before todays date and time')
+        
 
 # Form to add comment
 

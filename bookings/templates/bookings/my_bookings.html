@@ -1,13 +1,14 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content%}
 <h1 class="h1">My bookings</h1>
 {% if user.is_authenticated %}
   <div class="container text-center">
     <div class="row">
       <div class="col">
-        <p>
-          <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+       
+        <p> 
+          <button class=" btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
             Create a reservation
           </button>
         </p>
@@ -47,7 +48,7 @@
                 </div>
                 <ul class="list-group list-group-flush">
                   <li class="list-group-item"> {{reservation.first_name}} {{reservation.last_name}}</li>
-                  <li class="list-group-item">{{reservation.date_time_start}}</li>
+                  <li class="list-group-item">{{reservation.date_time}}</li>
                   <li class="list-group-item">For {{reservation.number_of_guests}} guests </li>
                 </ul>
                 <div class="card-body text-center">
@@ -92,7 +93,13 @@
   <hr>
   <br>
 <script>
-  fetch("/check").then( response => response.json() ).then( data => console.log(data))
+
+ // const dateTimeInput = document.getElementById('date_time_input');
+  
+ // dateTimeInput.addEventListener('blur', (event) => {
+ // event.target.style.background = 'green';
+// }, true);
+  // fetch("/check").then( response => response.json() ).then( data => console.log(data));
 </script>
 
 {% endblock %}
