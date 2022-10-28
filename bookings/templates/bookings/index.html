@@ -84,7 +84,7 @@
                             <li><strong>Author:</strong> {{ comment.user}} <hr></li>
                             <li> <strong>Review stars:</strong> {{comment.stars}} <span class="stars"><i class="fa-solid fa-star" style="color: #ffe234; ; font-size: larger;"></i></span><hr></li>
                             <li><strong>Comment:</strong> <br> {{ comment.text}} <hr></li>
-                            <li><strong>Published:</strong> {{ comment.created}} </li>
+                            <li><strong>Published:</strong> {{ comment.created|date}} at {{ comment.created| time:"H:i" }} </li>
                         </ul>
 
                     </div> 
