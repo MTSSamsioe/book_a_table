@@ -28,8 +28,8 @@ class ReservationForm(forms.ModelForm):
         total_tables_for_two = 2
         date_time = self.cleaned_data.get('date_time')
         number_of_guests = self.cleaned_data.get('number_of_guests')
-        #tables_needed = math.ceil(number_of_guests / 2)
-        if number_of_guests > total_tables_for_two:
+        tables_needed = math.ceil(number_of_guests / 2)
+        if tables_needed > total_tables_for_two:
             raise forms.ValidationError('There are no tables ')
         else:
             return number_of_guests
