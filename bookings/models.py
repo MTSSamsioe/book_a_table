@@ -1,12 +1,13 @@
 from django.db import models
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
-from django.core.validators import MinValueValidator, MaxValueValidator
+from django.core.validators import MinValueValidator, MaxValueValidator  # ta bort
 from datetime import datetime, timedelta
 import django.utils.timezone
 import math
+from django.contrib import messages  # tas bort
 
-
+# ta bort
 STATUS = ((0, 'Not approved'), (1, 'Approved'))
 GUESETS = ((1, '1'), (2, '2'), (3, '3'), (4, '4'),
            (5, '5'), (6, '6'), (7, '7'), (8, '8'), (9, '9'),
@@ -23,7 +24,7 @@ class Reservation(models.Model):
     email = models.EmailField()
     date_time = models.DateTimeField(null=True)
     date_time_end = models.DateTimeField(null=True)
-    number_of_guests = models.IntegerField(default=2, choices=GUESETS)
+    number_of_guests = models.IntegerField(default=2, choices=GUESETS)  # validators=[MinValueValidator(1), MaxValueValidator(12)]
     number_of_tables = models.IntegerField(null=True)
     status = models.IntegerField(choices=STATUS, default=1)
 
@@ -39,7 +40,7 @@ class Reservation(models.Model):
             self.number_of_tables = new_number_of_tables
         if not self.date_time_end:
             end_time = self.date_time + timedelta(minutes=120)
-            self.date_time_end = end_time
+            self.date_time_end = end_time     
         return super().save(*args, **kwargs)
 
 
