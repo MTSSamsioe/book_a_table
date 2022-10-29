@@ -4,7 +4,9 @@ from .models import Reservation, Comments
 from .forms import ReservationForm, CommentForm
 from django.contrib import messages
 from django.contrib.auth.models import User
-import datetime
+from datetime import datetime
+from django.utils import timezone
+import math
 # Create your views here.
 
 
@@ -54,6 +56,13 @@ def add_reservation(request):
     if request.method == 'POST':
         form = ReservationForm(request.POST)
         # New code below
+        # total_tables_for_two = 2
+        # date_time_form = form['date_time'].value()
+        # if date_time_form > timezone.now():
+        #     raise ValueError('There are no tables')
+        # else: 
+        #     return date_time_form
+
         if form.is_valid():
             # associate user with istance
             creator = form.save(commit=False)
