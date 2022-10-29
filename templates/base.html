@@ -1,8 +1,9 @@
-{% load static %}
 
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,22 +18,23 @@
     <title>Base page</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg bg-light">
+    <nav class="navbar navbar-expand-lg bg-light sticky-top border border-bottom-10">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#"> | The Fuzzy Duck |    </a>
+          <a class="navbar-brand" href="{% url 'home'%}"> | The Fuzzy Duck |    </a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse " id="navbarNavAltMarkup">
             <div class="navbar-nav ">
-              <a class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}" aria-current="page" href="{% url 'home'%}">Home</a>
-              <a class="nav-link {% if request.resolver_match.url_name == 'menu' %}active{% endif %}" href="{% url 'menu'%}">Menu</a>
-              <a class="nav-link {% if request.resolver_match.url_name == 'view_reservation' %}active{% endif %}" href="{% url 'view_reservation'%}">Book a table</a>
+              <a class="nav-link {% if request.resolver_match.url_name == 'home' %}active text-decoration-underline{% endif %}" aria-current="page" href="{% url 'home'%}">Home</a>
+              <a class="nav-link {% if request.resolver_match.url_name == 'menu' %}active text-decoration-underline{% endif %}" href="{% url 'menu'%}">Menu</a>
+              <a class="nav-link {% if request.resolver_match.url_name == 'view_reservation'  %}active text-decoration-underline{% endif %}" href="{% url 'view_reservation'%}">Book a table</a>
+              
               {% if user.is_authenticated %}
-                <a class="nav-link {% if request.resolver_match.url_name == 'account_logout' %}active{% endif %}" href="{% url 'account_logout'%}">Logout</a>
+                <a class="nav-link {% if request.resolver_match.url_name == 'account_logout' %}active text-decoration-underline{% endif %}" href="{% url 'account_logout'%}">Logout</a>
               {% else %}
-              <a class="nav-link {% if request.resolver_match.url_name == 'account_signup' %}active{% endif %}" href="{% url 'account_signup'%}">Register</a>
-              <a class="nav-link {% if request.resolver_match.url_name == 'account_login' %}active{% endif %}" href="{% url 'account_login'%}">Login</a>
+              <a class="nav-link {% if request.resolver_match.url_name == 'account_signup' %}active text-decoration-underline{% endif %}" href="{% url 'account_signup'%}">Register</a>
+              <a class="nav-link {% if request.resolver_match.url_name == 'account_login' %}active text-decoration-underline{% endif %}" href="{% url 'account_login'%}">Login</a>
               {% endif %}
             </div>
           </div>
@@ -60,8 +62,21 @@
         {% endblock content %}
     </main>
     <footer>
-    <div class="container-fluid bg-secondary bg-gradient">
-      <div class="h1">Social media</div>
+    <div class="container-fluid bg-light bg-gradient border border-top-5">
+      <div class="row">
+        <div class="d-flex justify-content-center text-center mt-4 mb-4">
+          <div class="col-sm-4"><a href="https://www.facebook.com/" target="_blank" aria-label="Opens Facebook in a new window"><i class="fa-brands fa-facebook fa-xl"></i></a></div>
+          <div class="col-sm-4"><a href="https://twitter.com/home" target="_blank" aria-label="Opens Twitter in a new window"><i class="fa-brands fa-twitter fa-xl"></i></a></div>
+          <div class="col-sm-4"><a href="https://www.instagram.com/" target="_blank" aria-label="Opens Instagram in a new window"><i class="fa-brands fa-square-instagram fa-xl"></i></a></div>
+        </div>
+        <div class="row">
+          <div class="col-sm-8 offset-md-2 text-center">
+            <p class="p mb-2 mt-2"> Contact | tel: 555 85 09 61 |
+            </p>
+
+          </div>
+        </div>
+      </div>
 
     </div>
     </footer>

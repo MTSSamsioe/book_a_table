@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import JsonResponse
+from django.http import FileResponse , Http404
+import os
 from .models import Reservation, Comments
 from .forms import ReservationForm, CommentForm
 from django.contrib import messages
@@ -22,14 +23,14 @@ def home(request):
 
 
 def view_reservation(request):
-    # toggle_modal = False
+    
     if request.user.is_authenticated:
         reservations = Reservation.objects.filter(status=1, user=request.user)
         form = ReservationForm()
         context = {
             'reservations': reservations,
             'form': form,
-            # 'toggle_modal': toggle_modal,
+            
         }
         return render(request, 'bookings/my_bookings.html', context)
     else:
@@ -55,14 +56,6 @@ def add_reservation(request):
 
     if request.method == 'POST':
         form = ReservationForm(request.POST)
-        # New code below
-        # total_tables_for_two = 2
-        # date_time_form = form['date_time'].value()
-        # if date_time_form > timezone.now():
-        #     raise ValueError('There are no tables')
-        # else: 
-        #     return date_time_form
-
         if form.is_valid():
             # associate user with istance
             creator = form.save(commit=False)
@@ -79,8 +72,8 @@ def add_reservation(request):
                 'form': form, 'reservations': reservations, 
                 # 'toggle_modal': toggle_modal
             }
-            messages.error(request, 'Something went wrong please try again')
-            return render(request, 'bookings/my_bookings.html', context)
+            messages.error(request, 'Something went wrong please press "Create button" again')
+            return   render(request, 'bookings/my_bookings.html', context)
         
             # return redirect('/my_bookings/', )
     form = ReservationForm()
@@ -115,16 +108,14 @@ def delete_reservation(request, reservation_id):
     messages.success(request, 'Your reservation was deleted successfully')
     return redirect('/my_bookings/')
 
-
 def menu(request):
-    return render(request, 'bookings/menu.html')
-
-
-def log(request):
-    return render(request, 'bookings/log.html')
-
-
-# comments
+    try:
+        return FileResponse(open('bookings/static/images/menu_fuzzy.pdf', 'rb'), content_type='application/pdf')
+    except FileNotFoundError:
+        raise Http404()
+#def menu(request):
+#    menu = os.path.join('bookings/static/images/', 'menu_fuzzy.pdf')
+#    return FileResponse(open(menu, 'rb'), content_type= 'appliccation/pdf')
 
 def add_comment(request):
 
