@@ -7,6 +7,8 @@ class TestCommentForm(TestCase):
     def test_text_is_required(self):
         form = CommentForm({'text': ''})
         self.assertFalse(form.is_valid())
+        
+
        # self.assertIn('text', form.errors.keys())
        # self.assertEqual(form.errors['name'][0], 'This field is required.')
 

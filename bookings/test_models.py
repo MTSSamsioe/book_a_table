@@ -1,9 +1,6 @@
 from django.test import TestCase
+from .models import Reservation, Comments
 
-# Create your tests here.
-class TestDjango(TestCase):
-    
-    def test_this_thing_wokss1(self):
-        self.assertEqual(1, 1)
+# class TestModels(TestCase):
+#     resevation = Reservation.objects.create()
 
-    
