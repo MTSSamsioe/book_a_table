@@ -25,10 +25,10 @@ class Reservation(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     first_name = models.CharField(max_length=80)
     last_name = models.CharField(max_length=80)
-    email = models.EmailField()
-    date_time = models.DateTimeField(null=True, validators=[MinValueValidator(datetime.datetime.utcnow().replace(tzinfo=pytz.UTC), "Please ensure your booking is from today onwards")])
+    email = models.EmailField(max_length=254)
+    date_time = models.DateTimeField(null= True, validators=[MinValueValidator(datetime.datetime.utcnow().replace(tzinfo=pytz.UTC), "Please pick a date and time before present time")])
     date_time_end = models.DateTimeField(null=True)
-    number_of_guests = models.IntegerField(default=2, choices=GUESETS)  # validators=[MinValueValidator(1), MaxValueValidator(12)]
+    number_of_guests = models.IntegerField(default=2, choices=GUESETS)
     number_of_tables = models.IntegerField(null=True)
     status = models.IntegerField(choices=STATUS, default=1)
 
