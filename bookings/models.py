@@ -22,10 +22,10 @@ GUESETS = ((1, '1'), (2, '2'), (3, '3'), (4, '4'),
 class Reservation(models.Model):
 
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-    first_name = models.CharField(max_length=80)
-    last_name = models.CharField(max_length=80)
-    email = models.EmailField(max_length=254)
-    date_time = models.DateTimeField(null=True,
+    first_name = models.CharField(max_length=80, blank=False, null=False)
+    last_name = models.CharField(max_length=80, blank=False, null=False)
+    email = models.EmailField(max_length=254, blank=False, null=False)
+    date_time = models.DateTimeField(null=True, blank=False,
                                      validators=[MinValueValidator
                                                  (datetime.datetime.utcnow()
                                                   .replace(tzinfo=pytz.UTC),
@@ -33,7 +33,7 @@ class Reservation(models.Model):
                                                   and time
                                                   before present time""")])
     date_time_end = models.DateTimeField(null=True)
-    number_of_guests = models.IntegerField(default=2, choices=GUESETS)
+    number_of_guests = models.IntegerField(default=2,blank=False, null=False, choices=GUESETS)
     number_of_tables = models.IntegerField(null=True)
     status = models.IntegerField(choices=STATUS, default=1)
 
@@ -93,9 +93,9 @@ class Comments(models.Model):
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING, null=True)
     created = models.DateTimeField(auto_now_add=True)
     image = CloudinaryField('image', default='placeholder')
-    text = models.TextField(max_length=400)
+    text = models.TextField(max_length=400, blank=False, null=False)
     approved = models.IntegerField(choices=COMMENT_OK, default=0)
-    stars = models.IntegerField(default=3, choices=STARS)
+    stars = models.IntegerField(default=3, choices=STARS, blank=False, null=False)
 
     class Meta:
         ordering = ['-created']

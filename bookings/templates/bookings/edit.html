@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 
+
 {% block content%}
 <h1 class="h1">Edit a Reservation</h1>
 <div class="container text-center">
@@ -11,8 +12,8 @@
         <div class="form-group col-sm"></div>
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit" class="btn btn-danger"><a class="link-light" href="/my_bookings/">Cancel</a></button>
-        <button type="submit" class="btn btn-success">Update</button>
+        <button type="submit" class="btn btn-danger mb-3 mt-3"><a class="link-light" href="/my_bookings/">Cancel</a></button>
+        <button type="submit" class="btn btn-success mb-3 mt-3">Update</button>
         </div>
         </form>
             

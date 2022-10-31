@@ -20,9 +20,8 @@ class ReservationForm(forms.ModelForm):
             'last_name': forms.TextInput(attrs={'class': 'form-control'} ),
             'email': forms.EmailInput(attrs={'class': 'form-control'} ),
             'number_of_guests': forms.Select(attrs={'class': 'form-select'} ),
-            'date_time': forms.DateTimeInput(format='%d/%m/%Y %H:%M', attrs={
-                    'class': 'form-control', 'type': 'datetime-local',
-                    'id': 'date_time_input'}),
+            'date_time': forms.DateTimeInput( attrs={
+                    'class': 'form-control', 'type': 'datetime-local'}),
         }
         labels = {
                 'first_name': 'First Name',
