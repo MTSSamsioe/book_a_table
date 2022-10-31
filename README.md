@@ -1,108 +1,143 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# The Fuzzy Duck|- Resturant stie
+---
+Welcome to the Fuzzy Ducks resturant site. The Fuzzy Duck is a small resturant with ten tables of two and we can seat parties up to 12 people.
+On our site you acn view our menu, navigate to our social media, leave a review comment with a picture and create and manage your rreservations.
+To leave comments and make reservations an account is needed. Anyone can create an account with a few clicks.
 
-Welcome M. Samsioe,
+## Featues
+--- 
+### Existing Features
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
+#### Base Template
+The base templates consist of sections that are shown on all pages. The sections are navigation, messagearea and footer.
 
-You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **September 1, 2021**
+- Navigation
+    - The navigation bar consist of 5 menu options when the user is logged out. When the user is logged in the "Regisster" option disapers
+    - When the screen width is smaller than 990pixels the menu converts to a button in the top right coner
+    - The nav option the user is on change color and get an underline to clearly show the user where on the site the user is.
+    - The Navbar is shown on all pages and provides an easy and clear way to navigate through the site and therfore binging value to the user.
+![pictuer of message](/bookings/static/images/nav_bar_logged_out.png)
+- Messagess
+    - Messages is displayed when the user take certain actions. Examples of such actions are creating, editing, deleting reservations, creating comments. Error messages are also displayed here.
+    - Messages are displayed beneath the navbar. Error messages in read and confirmations in green
+    - Messages help notify the user of errors and succesfull actions taken
+![pictuer of message](/bookings/static/images/confirmation_message.png)
+- Main content
+    - Content from other pages are prresented here so the base can emain the same
+- Footer
+    - Here links to our social media is presented with clear symbols of each platform. The links open in a new to provide a good user experience
+    - our phonenumer is also presented here if customers want to call us with a reservation
+![pictuer of message](/bookings/static/images/footer.png)
 
-## Gitpod Reminders
+#### Landing Page
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+- The landing page image
+    - Here is the user pesented with a picture of our resturant bar to give the user an instant idea of what typ of site the user has visited
+    - The image has a fixed position with a scroll effect to give an additional design boost
+![pictuer of message](/bookings/static/images/hero_img.png)
+- Comment section
 
-`python3 -m http.server`
+    - Leave a Comment
+     - Here the user can leave a review comment
+     - If there are no comments the user sees a message to leave the first comment
+     - If the user is not logged in two links are pesented to either signup or login to be able to leave a comment
+     - The user must fill in the text field of max 400 charcters, this field is required
+     - The user can also give a review score between 1-5 stars with a default value of 3 stars
+     - There is also an optional function to upload a picture from the users visit
+     - When the comment is submitted the user get a message saying that the comment is saved an awaitin approval from the resturant
 
-A blue button should appear to click: _Make Public_,
+    - View existing comments
+        - Beneath the leave comment section the user can scroll through other visitors comments
+        - The window where the comments are presented is scollable to avoid a long list on the main page
+    - Approve comments
+        - Before a comment is published an admin user must approve it fom the admin page to avoid inappopriate comments being published
+![pictuer of message](/bookings/static/images/comment_logged_out.png)
+![pictuer of message](/bookings/static/images/comments.png)
+![pictuer of message](/bookings/static/images/comments_empty.png) 
+#### Menu
+- Menu
+    - In thsi section a pdf file is loaded so the user can see what food and beveragges are offered in our resturant
 
-Another blue button should appear to click: _Open Browser_.
+#### Book a Table
+- Book a Table
+    - Here the user can create, view, edit and delete reservations
+    - The "Create a reservation" button opens a window with input fields so the required ino can be entered
+        - First name: is required and has a max length of 80 characters
+        - Last name: is required and has a max lengt of 80 chaacters
+        - Email: is required and must have the correct format and be less than 254 characters
+        - Number of guests: is required but has a default value of 2
+        - Date & Time: is equired and has date time picker to make is easy for the user to provide the corect format.
+            - validators:
+                - User can´t pick a date before present time.
+                - User can´t pick a date before or after opening hours with the last time for reservations are at 21.59 o'clock
+                - If to many reservations are placed during a specefic time a error shows that there are no available tables at that time
+    - View reservations
+        - Here the user can see reservations that are made and approved by the resturant
+        - The resrevation card shows information about the resevation such as date and number of people
+        - If there are no reservations the user sees a text that says there are no reservations at the moment
+    - Edit a reservation
+        - The edit reservation page opens if the user presses the "edit" button and a pr populated widow appers with all the details of the reservation
+        - The user can change the information and press update or cancel when the new information is entered
+    - Delete a reservation
+        - The user can press the "Delete" button to delete a reservation. Before the reservation gets deleted a warning message is shown asking the user if they are sure
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+    
+![no reservation](/bookings/static/images/no_reservation.png)
+![Create reservation](/bookings/static/images/create_reservation.png)
+![view reservations](/bookings/static/images/reservations.png)
+![edit reserrvation](/bookings/static/images/edit_reservation.png)
+![Delete resevation](/bookings/static/images/delete_reservation.png)
 
-A blue button should appear to click: _Make Public_,
+#### Register
+- If the user do not have an account one can be reated here. Either press the "Register" link in the nav bar or in the link on the signup page
+    - The fields Username and password are required and the field e-mail is optional. The password must we written in to two fields to asure that the correct password is entered.
+#### Log in / Log out 
+- In the navbar the user can see either see login or logout depending the log in state. This clearly shows if the user is logged in or not
+- The login page requires the user to enter username and password
+- The user can also check the box "Rememer me" to have the user stay loged in
+- If the user presses signout the signout page is presented as an extra step before being loged out.
+![sinup page](/bookings/static/images/signup.png)
+![sing in page](/bookings/static/images/signin.png)
+![sign out page](/bookings/static/images/signout.png)
 
-Another blue button should appear to click: _Open Browser_.
+#### Admin site
+- Here an admin user can log in to manage comments and reservations
+- Both comments and reservations must be approved by an admin user before published on site
+- Custom list columns and actions are added so the admin user can approve/disapprove and delete multible rows at the same time. As well as et a good ovelook of all rows
 
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+![admin comments ](/bookings/static/images/admin_comments.png)
+![admin resevations](/bookings/static/images/admin_reservations.png)
 
-To log into the Heroku toolbelt CLI:
 
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In Gitpod, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
+### Features Left to Implement
+- An email confirmation sent to the user when a reservation is finalized
+- Ability to pick tables in different sizes
+- Calendar that shows available time slots for reservations
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
-
-------
-
-## Release History
-
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
-
-**September 1 2021:** Remove `PGHOSTADDR` environment variable.
-
-**July 19 2021:** Remove `font_fix` script now that the terminal font issue is fixed.
-
-**July 2 2021:** Remove extensions that are not available in Open VSX.
-
-**June 30 2021:** Combined the P4 and P5 templates into one file, added the uptime script. See the FAQ at the end of this file.
-
-**June 10 2021:** Added: `font_fix` script and alias to fix the Terminal font issue
-
-**May 10 2021:** Added `heroku_config` script to allow Heroku API key to be stored as an environment variable.
-
-**April 7 2021:** Upgraded the template for VS Code instead of Theia.
-
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
-
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
-
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
-
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
-
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
-
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
-
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
-
-------
-
-## FAQ about the uptime script
-
-**Why have you added this script?**
-
-It will help us to calculate how many running workspaces there are at any one time, which greatly helps us with cost and capacity planning. It will help us decide on the future direction of our cloud-based IDE strategy.
-
-**How will this affect me?**
-
-For everyday usage of Gitpod, it doesn’t have any effect at all. The script only captures the following data:
-
-- An ID that is randomly generated each time the workspace is started.
-- The current date and time
-- The workspace status of “started” or “running”, which is sent every 5 minutes.
-
-It is not possible for us or anyone else to trace the random ID back to an individual, and no personal data is being captured. It will not slow down the workspace or affect your work.
-
-**So….?**
-
-We want to tell you this so that we are being completely transparent about the data we collect and what we do with it.
-
-**Can I opt out?**
-
-Yes, you can. Since no personally identifiable information is being captured, we'd appreciate it if you let the script run; however if you are unhappy with the idea, simply run the following commands from the terminal window after creating the workspace, and this will remove the uptime script:
-
-```
-pkill uptime.sh
-rm .vscode/uptime.sh
-```
-
-**Anything more?**
-
-Yes! We'd strongly encourage you to look at the source code of the `uptime.sh` file so that you know what it's doing. As future software developers, it will be great practice to see how these shell scripts work.
-
+## Testing
 ---
 
-Happy coding!
+### Validator Testing
+- HTML
+
+- CSS
+
+- Python
+
+### Unfixed Bugs
+- More automated testing would be better. more advanced tests that could test all validators as well as model methods
+- No specific error messages are shown when editin reservations. Just a message that something went wrong but not what validator was activated
+### Fixed Bugs
+
+## Deployment
+---
+## Credits
+---
+### Content
+
+### Media
+
+## Mockups
+---
+## Use stories
+---
