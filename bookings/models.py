@@ -35,7 +35,7 @@ class Reservation(models.Model):
     date_time_end = models.DateTimeField(null=True)
     number_of_guests = models.IntegerField(default=2,blank=False, null=False, choices=GUESETS)
     number_of_tables = models.IntegerField(null=True)
-    status = models.IntegerField(choices=STATUS, default=1)
+    status = models.IntegerField(choices=STATUS, default=0)
 
     class Meta:
         ordering = ['-date_time']
