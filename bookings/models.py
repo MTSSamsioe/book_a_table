@@ -57,8 +57,13 @@ class Reservation(models.Model):
         if tables_needed > total_tables_for_two:
             raise ValidationError("No tables")
 
-        if str(date_time_form)[11:12] > str(22) or str(date_time_form)[11:12] < str(11) :
-            raise ValidationError("pick a time within opening hours")
+        #if str(date_time_form)[12:13] > str(22) :
+        #    raise ValidationError("pick a time before closing time")
+        opening = '11:00'
+        if str(date_time_form)[11:13] > str(21):
+            raise ValidationError("pick a time before closing (last reservation time is before 22.00)")
+        if str(date_time_form)[11:13] < str(11):
+            raise ValidationError("pick a time after opening")
         super(Reservation, self).clean()
     
     # Calc number of tables
