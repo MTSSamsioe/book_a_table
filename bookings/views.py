@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import FileResponse , Http404
+from django.http import FileResponse, Http404
 import os
 from .models import Reservation, Comments
 from .forms import ReservationForm, CommentForm
@@ -8,7 +8,8 @@ from django.contrib.auth.models import User
 from datetime import datetime
 from django.utils import timezone
 import math
-# Create your views here.
+
+# View for rendering index.html with form and comments
 
 
 def home(request):
@@ -21,44 +22,51 @@ def home(request):
     }
     return render(request, 'bookings/index.html', context)
 
+# View for rendering my_bookings.html with form and reservation
+
 
 def view_reservation(request):
-    
+
     if request.user.is_authenticated:
         reservations = Reservation.objects.filter(status=1, user=request.user)
         form = ReservationForm()
         context = {
             'reservations': reservations,
             'form': form,
-            
         }
         return render(request, 'bookings/my_bookings.html', context)
     else:
         return render(request, 'bookings/my_bookings.html')
 
+# View for add a resrevation
+
+
 def add_reservation(request):
-    
+
     if request.method == 'POST':
         form = ReservationForm(request.POST)
         if form.is_valid():
-            
+
             creator = form.save(commit=False)
             creator.user = request.user
             creator.save()
             messages.success(request,
-                             'Your reservation was saved and is awaiting approval from resturant')
+                             '''Your
+                             reservation was saved and is
+                             awaiting approval from resturant''')
             return redirect('/my_bookings/')
         else:
-            
+
             reservations = Reservation.objects.filter(
                 status=1, user=request.user)
             context = {
-                'form': form, 'reservations': reservations, 
-                
+                'form': form, 'reservations': reservations,
+
             }
-            messages.error(request, 'Something went wrong please press "Create button" again')
-            return   render(request, 'bookings/my_bookings.html', context)
-        
+            messages.error(request, '''Something went wrong
+                           please press "Create button" again''')
+            return render(request, 'bookings/my_bookings.html', context)
+
             # return redirect('/my_bookings/', )
     form = ReservationForm()
     context = {
@@ -66,6 +74,8 @@ def add_reservation(request):
     }
 
     return render(request, 'bookings/my_bookings.html', context)
+
+# View for editing a resrevation
 
 
 def edit_reservation(request, reservation_id):
@@ -85,6 +95,8 @@ def edit_reservation(request, reservation_id):
     }
     return render(request, 'bookings/edit.html', context)
 
+# View for deleting a resrevation
+
 
 def delete_reservation(request, reservation_id):
     reservation = get_object_or_404(Reservation, id=reservation_id)
@@ -92,14 +104,19 @@ def delete_reservation(request, reservation_id):
     messages.success(request, 'Your reservation was deleted successfully')
     return redirect('/my_bookings/')
 
+# View for rendering a pdf file with a menu
+
+
 def menu(request):
     try:
-        return FileResponse(open('bookings/static/images/menu_fuzzy.pdf', 'rb'), content_type='application/pdf')
+        return FileResponse(open('''bookings/static/images/
+                                 menu_fuzzy.pdf''', 'rb'),
+                            content_type='application/pdf')
     except FileNotFoundError:
         raise Http404()
-#def menu(request):
-#    menu = os.path.join('bookings/static/images/', 'menu_fuzzy.pdf')
-#    return FileResponse(open(menu, 'rb'), content_type= 'appliccation/pdf')
+
+# View for adding a review comment
+
 
 def add_comment(request):
 
@@ -110,7 +127,8 @@ def add_comment(request):
             creator = form.save(commit=False)
             creator.user = request.user
             creator.save()
-            messages.success(request, 'Your comment has been saved and waiting approval')
+            messages.success(request, '''Your comment
+                             has been saved and waiting approval''')
             return redirect('/')
             # print(form.cleaned_data)
         else:

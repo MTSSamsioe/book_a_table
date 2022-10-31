@@ -13,6 +13,8 @@ class Setup_Class(TestCase):
             create_user(username=self.username,
                         email='test@test.com', password=self.password)
 
+# Section for editing reviews
+
 
 class Testviews_req_log_in(Setup_Class):
 
@@ -27,11 +29,14 @@ class Testviews_req_log_in(Setup_Class):
                                                  last_name='last',
                                                  email='email@emial.com',
                                                  date_time='2022-11-15 15:00',
-                                                 date_time_end='2022-11-15 17:00',
+                                                 date_time_end='''2022-11-
+                                                 15 17:00''',
                                                  number_of_guests=2)
         response = self.client.get(f'/edit/{reservation.id}')
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'bookings/edit.html')
+
+# Section for testing error response for reviews
 
     def test_respons_ok_on_submit(self):
 
@@ -43,15 +48,17 @@ class Testviews_req_log_in(Setup_Class):
             'number_of_guests': 2,
             })
         self.assertEqual(response.status_code, 200)
-        
+
+# Section for testing deleting reviews
 
     def test_can_delete_reservation(self):
         reservation = Reservation.objects.create(
                                                  first_name='first',
                                                  last_name='last',
                                                  email='email@emial.com',
-                                                 date_time= '2022-11-25 15:00',
-                                                 date_time_end=  '2022-11-25 17:00',
+                                                 date_time='2022-11-25 15:00',
+                                                 date_time_end='''2022-
+                                                 11-25 17:00''',
                                                  number_of_guests=2)
         response = self.client.get(f'delete/{reservation.id}')
 
@@ -61,6 +68,9 @@ class Testviews_req_log_in(Setup_Class):
                                                      'stars': '3'})
         self.assertEqual(Comments.objects.count(), 1)
         self.assertRedirects(response, '/')
+
+# Section for viewing pages that don´t need log in
+
 
 class Testviews_no_log_in(TestCase):
 
@@ -82,5 +92,3 @@ class Testviews_no_log_in(TestCase):
         response = self.client.get('/my_bookings/')
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'bookings/my_bookings.html')
-
-    

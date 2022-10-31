@@ -1,9 +1,8 @@
 from django.contrib import admin
-
 from .models import *
 
+# Settings for comment admin panel
 
-# Register your models here.
 
 class CommentAdmin(admin.ModelAdmin):
     list_display = ('user', 'approved', 'text', 'stars')
@@ -18,6 +17,8 @@ class CommentAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Comments, CommentAdmin)
+
+# Settings for Reservation admin panel
 
 
 class ReservationAdmin(admin.ModelAdmin):

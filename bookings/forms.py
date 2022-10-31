@@ -6,6 +6,8 @@ from django.contrib import messages
 from django.core.validators import MinValueValidator
 import math
 
+# Section for reservations form
+
 
 class ReservationForm(forms.ModelForm):
 
@@ -16,11 +18,11 @@ class ReservationForm(forms.ModelForm):
                   'number_of_guests', 'date_time']
 
         widgets = {
-            'first_name': forms.TextInput(attrs={'class': 'form-control'} ),
-            'last_name': forms.TextInput(attrs={'class': 'form-control'} ),
-            'email': forms.EmailInput(attrs={'class': 'form-control'} ),
-            'number_of_guests': forms.Select(attrs={'class': 'form-select'} ),
-            'date_time': forms.DateTimeInput( attrs={
+            'first_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'last_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control'}),
+            'number_of_guests': forms.Select(attrs={'class': 'form-select'}),
+            'date_time': forms.DateTimeInput(attrs={
                     'class': 'form-control', 'type': 'datetime-local'}),
         }
         labels = {
@@ -30,6 +32,7 @@ class ReservationForm(forms.ModelForm):
                 'number_of_guests': 'Number Of Guests',
                 'date_time': 'Date & Time Opening Hours: 11.00 - 22.30',
         }
+# Section for comments form
 
 
 class CommentForm(forms.ModelForm):
@@ -43,7 +46,7 @@ class CommentForm(forms.ModelForm):
             'text': forms.Textarea(attrs={'class': 'form-control'}),
             'stars': forms.Select(attrs={'class': 'form-select'}),
             'image': forms.FileInput(attrs={'class': 'form-control'})}
-        
+
         labels = {
             'text': 'Write Your Comment Here',
             'stars': 'Stars 1 - 5',

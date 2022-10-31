@@ -10,6 +10,7 @@ import datetime
 import pytz
 from django.core.exceptions import ValidationError
 
+# Choices for reservation model fields
 
 STATUS = ((0, 'Not approved'), (1, 'Approved'))
 GUESETS = ((1, '1'), (2, '2'), (3, '3'), (4, '4'),
@@ -33,7 +34,9 @@ class Reservation(models.Model):
                                                   and time
                                                   before present time""")])
     date_time_end = models.DateTimeField(null=True)
-    number_of_guests = models.IntegerField(default=2,blank=False, null=False, choices=GUESETS)
+    number_of_guests = models.IntegerField(
+                                           default=2, blank=False, null=False,
+                                           choices=GUESETS)
     number_of_tables = models.IntegerField(null=True)
     status = models.IntegerField(choices=STATUS, default=0)
 
@@ -43,7 +46,8 @@ class Reservation(models.Model):
     def __str__(self):
         return self.first_name
 
-    # Prevent doble bookings during 120 minutes timeslot
+    # Function that prevent double bookings during a 120 minutes timeslot
+
     def clean(self):
         self.is_cleaned = True
         total_tables_for_two = 10
@@ -70,7 +74,7 @@ class Reservation(models.Model):
             raise ValidationError("pick a time after opening")
         super(Reservation, self).clean()
 
-    # Calc number of tables neede for reservation
+    # Calc number of tables needed for reservation
     def save(self, *args, **kwargs):
         if not self.number_of_tables:
             new_number_of_tables = math.ceil(self.number_of_guests / 2)
@@ -95,7 +99,9 @@ class Comments(models.Model):
     image = CloudinaryField('image', default='placeholder')
     text = models.TextField(max_length=400, blank=False, null=False)
     approved = models.IntegerField(choices=COMMENT_OK, default=0)
-    stars = models.IntegerField(default=3, choices=STARS, blank=False, null=False)
+    stars = models.IntegerField(
+                                default=3, choices=STARS,
+                                blank=False, null=False)
 
     class Meta:
         ordering = ['-created']

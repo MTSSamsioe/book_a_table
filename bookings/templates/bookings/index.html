@@ -3,114 +3,99 @@
 {% load static %}
 
 {% block content%}
-
-
+<!--Hero image-->
 <div class="margin"></div>
-<div class="hero-img-container" >
+<div class="hero-img-container">
     <div class="hero-img">
         <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-      
     </div>
 </div>
 <div class="margin"></div>
-<div >
-    <div class= "container ">
-        <div class="row text-center">
-            <div class="col ">
-                <div class="h1 mb-5 mb-5">Review comments</div>
-                <p>
-                    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                      Leave a comment 
-                    </button>
-                  </p>
-                  
+<section>
+    <div>
+        <div class="container ">
+            <div class="row text-center">
+                <div class="col ">
+                    <!--Section for leaving and viewing comments-->
+                    <div class="h1 mb-5 mb-5">Review comments</div>
+                    <p>
+                        <button class="btn btn-primary" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"
+                            aria-label="opens up section leave a comment">
+                            Leave a comment
+                        </button>
+                    </p>
+
+                </div>
             </div>
         </div>
-    </div>
-    
-    
-    <div class="row ">
-        <div class="col-sm-8 offset-md-2">
-            <div class="collapse" id="collapseExample">
-                <div class="card card-body">
 
-                {% if user.is_authenticated %}
-                  <p>
-                    Please leave a comment and a rating of your experience.
-                  </p>
-                  <form method="POST" action="add_comment" enctype='multipart/form-data'>
-                
-                    <div class="form-group col-sm"></div>
-                    {% csrf_token %}
-                    {{ form.as_p }}
-                    <button type="submit" class="btn btn-primary">Submit</button>
+
+        <div class="row ">
+            <div class="col-sm-8 offset-md-2">
+                <div class="collapse" id="collapseExample">
+                    <div class="card card-body">
+                        {% if user.is_authenticated %}
+                        <p>
+                            Please leave a comment and a rating of your experience.
+                        </p>
+                        <form method="POST" action="add_comment" enctype='multipart/form-data'>
+                            <div class="form-group col-sm"></div>
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
                     </div>
-                  </form>
-                {% else%}
-                  <p>Plese <a href="{% url 'account_login'%}">log in</a> or <a href="{% url 'account_signup'%}">sign up</a> to leave a review</p>
-
-                {% endif %}
+                    {% else%}
+                    <p>Plese <a href="{% url 'account_login'%}">log in</a> or <a href="{% url 'account_signup'%}">sign
+                            up</a> to leave a review</p>
+                    {% endif %}
                 </div>
             </div>
         </div>
     </div>
-  
-    <div class="container "></div>
-        <div class=" row justify-content-sm-center ">
-            
-            <div class="col-sm-10 border-3 border border-secondary rounded-4 " id="outer-frame">
-                {% if comments|length  > 0 %}
-                {% for comment in comments %}
-                
+</section>
+<div class="container "></div>
+<div class=" row justify-content-sm-center ">
+
+    <div class="col-sm-10 border-3 border border-secondary rounded-4 " id="outer-frame">
+        {% if comments|length  > 0 %}
+            {% for comment in comments %}
+
                 <div class="row border-1 border border-primary mt-3 mb-3 " id="inner-frame">
                     <div class="col-lg-6 d-flex flex-wrap align-items-center justify-content-center ml-3 mb-3" id="comment-img">
                         {% if "placeholder" in comment.image.url %}
-                            <img src="https://res.cloudinary.com/dy2uthyxz/image/upload/v1666698200/pexels-victor-freitas-744780_piixal.jpg" class="img-fluid mt-3 ml-3 mb-3" alt="comment placeholder">
+                        <img src="https://res.cloudinary.com/dy2uthyxz/image/upload/v1666698200/pexels-victor-freitas-744780_piixal.jpg"
+                            class="img-fluid mt-3 ml-3 mb-3" alt="comment placeholder">
                         {% else%}
-                            <img src="{{ comment.image.url }}" class="img-fluid mt-3 ml-3 mb-3" alt="comment placeholder">
+                        <img src="{{ comment.image.url }}" class="img-fluid mt-3 ml-3 mb-3" alt="comment placeholder">
                         {%endif%}
 
                     </div>
-                    <div class="col-lg-6 d-flex flex-wrap align-items-center justify-content-center mt-3 mb-3" id="comment-section" >
+                    <div class="col-lg-6 d-flex flex-wrap align-items-center justify-content-center mt-3 mb-3"
+                        id="comment-section">
                         <ul style="list-style-type: none;">
-                            <li><strong>Author:</strong> {{ comment.user}} <hr></li>
-                            <li> <strong>Review stars:</strong> {{comment.stars}} <span class="stars"><i class="fa-solid fa-star"></i></span><hr></li>
-                            <li><strong>Comment:</strong> <br> {{ comment.text}} <hr></li>
+                            <li>
+                                <strong>Author:</strong> {{ comment.user}}
+                                <hr>
+                            </li>
+                            <li> 
+                                <strong>Review stars:</strong> {{comment.stars}} <span class="stars"><i
+                                        class="fa-solid fa-star"></i></span>
+                                <hr>
+                            </li>
+                            <li>
+                                <strong>Comment:</strong> <br> {{ comment.text}}
+                                <hr>
+                            </li>
                             <li><strong>Published:</strong> {{ comment.created|date}} at {{ comment.created| time:"H:i" }} </li>
                         </ul>
-
-                    </div> 
+                    </div>
                 </div>
-                
-                
-                    
-                {% endfor%}
-                {%else%}
-                    <p class="p text-center">Leave the first comment</p>
-                {%endif%}
-            </div>   
-            
-        </div>
-    </div>
-  
-    
+            {% endfor%}
+        {%else%}
+            <p class="p text-center">Leave the first comment</p>
+        {%endif%}
     </div>
 </div>
 

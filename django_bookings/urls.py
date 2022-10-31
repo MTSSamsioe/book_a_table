@@ -14,7 +14,6 @@ urlpatterns = [
     path('edit/<reservation_id>', edit_reservation, name='edit'),
     path('delete/<reservation_id>', delete_reservation, name='delete'),
     path('accounts/', include('allauth.urls')),
-    
 
 ]
 

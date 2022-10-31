@@ -4,7 +4,7 @@ from .forms import CommentForm, ReservationForm
 from .models import Reservation, Comments
 from datetime import datetime
 
-# Set up class
+# Tests to test Required fields in comment form
 
 
 class Setup_Class(TestCase):
