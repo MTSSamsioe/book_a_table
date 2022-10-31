@@ -34,7 +34,7 @@
     <div class= "container ">
         <div class="row text-center">
             <div class="col ">
-                <div class="h1">Review comments</div>
+                <div class="h1 mb-5 mb-5">Review comments</div>
                 <p>
                     <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                       Leave a comment 
@@ -76,7 +76,9 @@
         <div class=" row justify-content-sm-center ">
             
             <div class="col-sm-10 border-3 border border-secondary rounded-4 " id="outer-frame">
+                {% if comments|length  > 0 %}
                 {% for comment in comments %}
+                
                 <div class="row border-1 border border-primary mt-3 mb-3 " id="inner-frame">
                     <div class="col-lg-6 d-flex flex-wrap align-items-center justify-content-center ml-3 mb-3" id="comment-img">
                         {% if "placeholder" in comment.image.url %}
@@ -96,7 +98,13 @@
 
                     </div> 
                 </div>
+                
+                
+                    
                 {% endfor%}
+                {%else%}
+                    <p class="p text-center">Leave the first comment</p>
+                {%endif%}
             </div>   
             
         </div>

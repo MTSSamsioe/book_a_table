@@ -1,12 +1,13 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content%}
-<h1 class="h1">My bookings</h1>
+
+
 {% if user.is_authenticated %}
   <div class="container text-center">
     <div class="row">
       <div class="col">
-       
+        <h1 class="h1 mb-5 mb-5">My bookings</h1>
         <p> 
           <button class="btn btn-primary " type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
             Create a reservation
@@ -37,7 +38,7 @@
 
   <div class="container">
     <div class="row gy-3 ">
-      
+      {% if reservations|length  > 0 %}
         {% for reservation in reservations %}
           <div class="col-sm">
             <div class="card" style="width: 18rem;">
@@ -80,7 +81,9 @@
             </div>
           </div>
           {% endfor %}
-        
+          {%else%}
+          <p class="p text-center">You have no reservations at the moment</p>
+      {%endif%}
       
     </div>
   </div>

@@ -46,7 +46,7 @@ def add_reservation(request):
             creator.user = request.user
             creator.save()
             messages.success(request,
-                             'Your reservation was created successfully')
+                             'Your reservation was saved and is awaiting approval from resturant')
             return redirect('/my_bookings/')
         else:
             
@@ -110,7 +110,7 @@ def add_comment(request):
             creator = form.save(commit=False)
             creator.user = request.user
             creator.save()
-            messages.success(request, 'Your comment has been saved')
+            messages.success(request, 'Your comment has been saved and waiting approval')
             return redirect('/')
             # print(form.cleaned_data)
         else:
