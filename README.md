@@ -16,25 +16,25 @@ The base templates consist of sections that are shown on all pages. The sections
     - When the screen width is smaller than 990pixels the menu converts to a button in the top right coner
     - The nav section the user is on change color and get an underline to clearly show the user where on the site the user is.
     - The Navbar is shown on all pages and provides an easy and clear way to navigate through the site and therfore binging value to the user.
-![nav bar log out](/bookings/static/images/nav_bar_logged_out.png)
+![nav bar log out]( static {%%}
 - Messagess
     - Messages is displayed when the user take certain actions. Examples of such actions are creating, editing, deleting reservations, creating comments. Error messages are also displayed here.
     - Messages are displayed beneath the navbar. Error messages in red and confirmations in green
     - Messages help notify the user of errors and succesfull actions taken
-![confim message](/bookings/static/images/confirmation_message.png)
+![confim message](/bookings/static/bookings/images/confirmation_message.png)
 - Main content
     - Content from other pages are prresented here so the base can emain the same
 - Footer
     - Here links to our social media is presented with clear symbols of each platform. The links open in a new to provide a good user experience
     - our phone number is also presented here if customers want to call us with a reservation
-![footer](/bookings/static/images/footer.png)
+![footer](/bookings/static/bookings/images/footer.png)
 
 #### Landing Page
 
 - The landing page image
     - Here the user is presented with a picture of our resturant bar to give the user an instant idea of what typ of site the user has visited
     - The image has a fixed position with a scroll effect to give an additional design boost
-![hero image](/bookings/static/images/hero_img.png)
+![hero image](/bookings/static/bookings/images/hero_img.png)
 - Comment section
 
     - Leave a Comment
@@ -51,9 +51,9 @@ The base templates consist of sections that are shown on all pages. The sections
         - The window where the comments are presented is scrollable to avoid a long list on the main page
     - Approve comments
         - Before a comment is published an admin user must approve it from the admin page to avoid inappopriate comments being published
-![logout](/bookings/static/images/comment_logged_out.png)
-![comments](/bookings/static/images/comments.png)
-![empty comment](/bookings/static/images/comments_empty.png) 
+![logout](/bookings/static/bookings/images/comment_logged_out.png)
+![comments](/bookings/static/bookings/images/comments.png)
+![empty comment](/bookings/static/bookings/images/comments_empty.png) 
 #### Menu
 - Menu
     - In this section a pdf file is loaded so the user can see what food and beveragges are offered in our resturant
@@ -82,11 +82,11 @@ The base templates consist of sections that are shown on all pages. The sections
         - The user can press the "Delete" button to delete a reservation. Before the reservation gets deleted a warning message is shown asking the user if they are sure
 
     
-![no reservation](/bookings/static/images/no_reservation.png)
-![Create reservation](/bookings/static/images/create_reservation.png)
-![view reservations](/bookings/static/images/reservations.png)
-![edit reserrvation](/bookings/static/images/edit_reservation.png)
-![Delete resevation](/bookings/static/images/delete_reservation.png)
+![no reservation](/bookings/static/bookings/images/no_reservation.png)
+![Create reservation](/bookings/static/bookings/images/create_reservation.png)
+![view reservations](/bookings/static/bookings/images/reservations.png)
+![edit reserrvation](/bookings/static/bookings/images/edit_reservation.png)
+![Delete resevation](/bookings/static/bookings/images/delete_reservation.png)
 
 #### Register
 - If the user do not have an account one can be created here. Either press the "Register" link in the nav bar or in the link on the signup page
@@ -96,17 +96,17 @@ The base templates consist of sections that are shown on all pages. The sections
 - The login page requires the user to enter username and password
 - The user can also check the box "Rememer me" to have the user stay loged in
 - If the user presses signout the signout page is presented as an extra step before being loged out.
-![sinup page](/bookings/static/images/signup.png)
-![sing in page](/bookings/static/images/signin.png)
-![sign out page](/bookings/static/images/signout.png)
+![sinup page](/bookings/static/bookings/images/signup.png)
+![sing in page](/bookings/static/bookings/images/signin.png)
+![sign out page](/bookings/static/bookings/bookings/images/signout.png)
 
 #### Admin site
 - Here an admin user can log in to manage comments and reservations
 - Both comments and reservations must be approved by an admin user before published on site
 - Custom list columns and actions are added so the admin user can approve/disapprove and delete multible rows at the same time. As well as et a good ovelook of all rows
 
-![admin comments ](/bookings/static/images/admin_comments.png)
-![admin resevations](/bookings/static/images/admin_reservations.png)
+![admin comments ](/bookings/static/bookings/images/admin_comments.png)
+![admin resevations](/bookings/static/bookings/images/admin_reservations.png)
 
 #### Model Methods
 - Automatic calculations of tables needed for reservation
@@ -291,8 +291,8 @@ The site has been both manually tested and with some automated tests. How the si
 
 ## Mockups
 ---
-![mockup landing page](/bookings/static/images/mockup_landing.png)
-![mockup resevations page](/bookings/static/images/mockup_reservation.png)
+![mockup landing page](/bookings/static/bookings/images/mockup_landing.png)
+![mockup resevations page](/bookings/static/bookings/images/mockup_reservation.png)
 
 ## User Stories
 
