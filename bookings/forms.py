@@ -8,6 +8,9 @@ import math
 
 # Section for reservations form
 
+# Code on how to style widgets are from:
+# https://www.youtube.com/watch?v=6-XXvUENY_8
+
 
 class ReservationForm(forms.ModelForm):
 

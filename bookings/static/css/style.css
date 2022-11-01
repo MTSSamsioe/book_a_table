@@ -46,11 +46,3 @@ a {
     ;
     font-size: larger;
 }
-
-/* Css for error messages */
-
-.errorlist {
-    list-style: none;
-    color: #690000;
-    font-size: large;
-}

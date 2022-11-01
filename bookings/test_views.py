@@ -87,8 +87,3 @@ class Testviews_no_log_in(TestCase):
         response = self.client.get('/my_bookings/')
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'bookings/my_bookings.html')
-
-    def test_view_reservation(self):
-        response = self.client.get('/my_bookings/')
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'bookings/my_bookings.html')

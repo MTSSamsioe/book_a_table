@@ -107,4 +107,4 @@ class Comments(models.Model):
         ordering = ['-created']
 
     def __str__(self):
-        return f" {self.user} on {self.created}"
+        return self.user
