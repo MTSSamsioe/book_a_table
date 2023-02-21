@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import FileResponse, Http404
+from django.http import FileResponse, Http404, HttpResponse
 import os
 from .models import Reservation, Comments
 from .forms import ReservationForm, CommentForm
@@ -106,12 +106,14 @@ def delete_reservation(request, reservation_id):
 
 # View for rendering a pdf file with a menu
 
+#Code in menu function was taken from https://www.codespeedy.com/show-a-pdf-file-in-django-instead-of-downloading/
 
 def menu(request):
     try:
-        return FileResponse(open('''bookings/static/images/
-                                 menu_fuzzy.pdf''', 'rb'),
-                            content_type='application/pdf')
+        with open('bookings/static/bookings/images/menu_fuzzy.pdf', 'rb') as pdf:
+            response = HttpResponse(pdf.read(), content_type='application/pdf')
+            response['Content-Disposition'] = 'inline;filename=menu_fuzzy.pdf'
+        return response
     except FileNotFoundError:
         raise Http404()
 

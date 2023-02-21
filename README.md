@@ -261,7 +261,8 @@ The site has been both manually tested and with some automated tests. How the si
     - https://stackoverflow.com/questions/25044370/make-clicked-tab-active-in-bootstrap
 -  How to style froms with bootstap:
     - https://www.youtube.com/watch?v=6-XXvUENY_8
-
+- How to render a pdf
+    - https://www.codespeedy.com/show-a-pdf-file-in-django-instead-of-downloading/ 
 
 ### Content
 
