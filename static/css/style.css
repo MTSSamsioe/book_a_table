@@ -2,6 +2,12 @@
     margin: 5% 0;
 }
 
+/* Css for navbar*/
+
+.nav-text {
+    color: #41464b;
+}
+
 /* Css for hero image and container */
 
 .hero-img-container {
