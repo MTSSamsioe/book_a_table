@@ -91,7 +91,8 @@ def edit_reservation(request, reservation_id):
             messages.error(request, 'Something went wrong! Please try again')
     form = ReservationForm(instance=reservation)
     context = {
-        'form': form
+        'form': form,
+        'reservation': reservation,
     }
     return render(request, 'bookings/edit.html', context)
 
