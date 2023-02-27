@@ -13,7 +13,7 @@ import math
 
 
 def home(request):
-
+    """View for rendering index.html"""
     form = CommentForm()
     comments = Comments.objects.filter(approved=1)
     context = {
@@ -26,6 +26,7 @@ def home(request):
 
 
 def view_reservation(request):
+    """View for viewing reservations"""
 
     if request.user.is_authenticated:
         reservations = Reservation.objects.filter(status=1, user=request.user)
@@ -42,6 +43,7 @@ def view_reservation(request):
 
 
 def add_reservation(request):
+    """ View for adding a reservation """
 
     if request.method == 'POST':
         form = ReservationForm(request.POST)
@@ -79,6 +81,8 @@ def add_reservation(request):
 
 
 def edit_reservation(request, reservation_id):
+    """View for editing reservations"""
+
     reservation = get_object_or_404(Reservation, id=reservation_id)
     if request.method == 'POST':
         form = ReservationForm(request.POST, instance=reservation)
@@ -100,6 +104,8 @@ def edit_reservation(request, reservation_id):
 
 
 def delete_reservation(request, reservation_id):
+    """View for deleting reservations """
+
     reservation = get_object_or_404(Reservation, id=reservation_id)
     reservation.delete()
     messages.success(request, 'Your reservation was deleted successfully')
@@ -107,11 +113,16 @@ def delete_reservation(request, reservation_id):
 
 # View for rendering a pdf file with a menu
 
-#Code in menu function was taken from https://www.codespeedy.com/show-a-pdf-file-in-django-instead-of-downloading/
+# Code in menu function was taken from
+# https://www.codespeedy.com/show-a-pdf-file-in-django-instead-of-downloading/
+
 
 def menu(request):
+    """View for showing the resturants menu """
+
     try:
-        with open('bookings/static/bookings/images/menu_fuzzy.pdf', 'rb') as pdf:
+        with open('bookings/static/bookings/images/menu_fuzzy.pdf', 'rb') \
+                as pdf:
             response = HttpResponse(pdf.read(), content_type='application/pdf')
             response['Content-Disposition'] = 'inline;filename=menu_fuzzy.pdf'
         return response
@@ -122,6 +133,7 @@ def menu(request):
 
 
 def add_comment(request):
+    """View for adding a comment"""
 
     if request.method == 'POST':
         form = CommentForm(request.POST, request.FILES)
@@ -148,9 +160,14 @@ def add_comment(request):
 
 
 def page_not_found(request, exception):
+    """View for handeling page not found"""
+
     return render(request, 'bookings/page_not_found.html')
 
 # View for server error
 
+
 def server_error(request):
+    """View for handeling server error"""
+
     return render(request, 'bookings/server_error.html')
