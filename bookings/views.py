@@ -92,7 +92,11 @@ def edit_reservation(request, reservation_id):
                              'Your reservation was updated successfully')
             return redirect('/my_bookings/')
         else:
-            messages.error(request, 'Something went wrong! Please try again')
+            messages.error(request, '''Something went wrong! Please try again
+                                       Possible errors:
+                                       - Date and time is before present time
+                                       - Time is outside opening hours
+                                       - There are no availeble tables''')
     form = ReservationForm(instance=reservation)
     context = {
         'form': form,

@@ -117,7 +117,7 @@ The base templates consist of sections that are shown on all pages. The sections
 - An email confirmation sent to the user when a reservation is finalized
 - Ability to pick tables in different sizes
 - Calendar that shows available time slots for reservations
-
+- More specific error messages when editing a reservation
 
 ## Testing
 ---
