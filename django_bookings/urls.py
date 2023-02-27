@@ -17,6 +17,9 @@ urlpatterns = [
 
 ]
 
+handler404 = "bookings.views.page_not_found"
+handler500 = "bookings.views.server_error"
+
 if settings.DEBUG:
     import debug_toolbar
     urlpatterns += path('__debug__/', include('debug_toolbar.urls')),

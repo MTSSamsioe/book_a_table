@@ -143,3 +143,14 @@ def add_comment(request):
         'form': form
     }
     return render(request, 'bookings/index.html', context)
+
+# View for page not found
+
+
+def page_not_found(request, exception):
+    return render(request, 'bookings/page_not_found.html')
+
+# View for server error
+
+def server_error(request):
+    return render(request, 'bookings/server_error.html')

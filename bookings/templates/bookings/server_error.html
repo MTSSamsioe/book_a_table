@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content%}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 text-center">
+            <h1 class="h1">A server error occurred </h1>
+            <br>
+            <h2 class="h2">Please click link below to get to our home page</h2>
+            <br>
+            <h2 class="h2"><a href="{% url 'home' %}"><strong>Home</strong></a></h2>
+
+        </div>
+    </div>
+</div>
+{% endblock %}
