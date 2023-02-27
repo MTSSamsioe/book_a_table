@@ -40,11 +40,8 @@ a {
     overflow: scroll;
     max-height: 500px;
     border-radius: 15px;
-}
+    background-color: blue;
 
-#inner-frame {
-    border-radius: 15px;
-    margin: 5%;
 }
 
 .fa-solid.fa-star {

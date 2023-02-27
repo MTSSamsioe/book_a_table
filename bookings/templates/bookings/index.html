@@ -55,48 +55,51 @@
         </div>
     </div>
 </section>
-<div class="container-fluid "></div>
-<div class=" row d-flex justify-content-center ">
+<section>
+<div class="container-fluid my-3 ">
+    <div class=" row d-flex justify-content-center ">
 
-    <div class="col-10 border-3 border border-secondary rounded-4  " id="outer-frame">
-        {% if comments|length  > 0 %}
-            {% for comment in comments %}
+        <div class="col-10 border-3 border border-secondary rounded-4 " id="outer-frame">
+            {% if comments|length  > 0 %}
+                {% for comment in comments %}
 
-                <div class="row border-1 border border-primary mt-3 mb-3 " id="inner-frame">
-                    <div class="col-lg-6 d-flex align-items-center justify-content-center mb-3" id="comment-img">
-                        {% if "placeholder" in comment.image.url %}
-                        <img src="https://res.cloudinary.com/dy2uthyxz/image/upload/v1666698200/pexels-victor-freitas-744780_piixal.jpg"
-                            class="img-fluid mt-3 mb-3" alt="comment placeholder">
-                        {% else%}
-                        <img src="{{ comment.image.url }}" class="img-fluid mt-3 mb-3" alt="comment placeholder">
-                        {%endif%}
+                    <div class="row border-1 border border-primary my-3 mx-3 rounded-4">
+                        <div class="col-lg-6 d-flex align-items-center justify-content-center mb-3" id="comment-img">
+                            {% if "placeholder" in comment.image.url %}
+                            <img src="https://res.cloudinary.com/dy2uthyxz/image/upload/v1666698200/pexels-victor-freitas-744780_piixal.jpg"
+                                class="img-fluid mt-3 mb-3" alt="comment placeholder">
+                            {% else%}
+                            <img src="{{ comment.image.url }}" class="img-fluid mt-3 mb-3" alt="comment placeholder">
+                            {%endif%}
 
+                        </div>
+                        <div class="col-lg-6 d-flex align-items-center justify-content-center mt-3 mb-3"
+                            id="comment-section">
+                            <ul style="list-style-type: none;">
+                                <li>
+                                    <strong>Author:</strong> {{ comment.user}}
+                                    <hr>
+                                </li>
+                                <li> 
+                                    <strong>Review stars:</strong> {{comment.stars}} <span class="stars"><i
+                                            class="fa-solid fa-star"></i></span>
+                                    <hr>
+                                </li>
+                                <li>
+                                    <strong>Comment:</strong> <br> {{ comment.text}}
+                                    <hr>
+                                </li>
+                                <li><strong>Published:</strong> {{ comment.created|date}} at {{ comment.created| time:"H:i" }} </li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="col-lg-6 d-flex align-items-center justify-content-center mt-3 mb-3"
-                        id="comment-section">
-                        <ul style="list-style-type: none;">
-                            <li>
-                                <strong>Author:</strong> {{ comment.user}}
-                                <hr>
-                            </li>
-                            <li> 
-                                <strong>Review stars:</strong> {{comment.stars}} <span class="stars"><i
-                                        class="fa-solid fa-star"></i></span>
-                                <hr>
-                            </li>
-                            <li>
-                                <strong>Comment:</strong> <br> {{ comment.text}}
-                                <hr>
-                            </li>
-                            <li><strong>Published:</strong> {{ comment.created|date}} at {{ comment.created| time:"H:i" }} </li>
-                        </ul>
-                    </div>
-                </div>
-            {% endfor%}
-        {%else%}
-            <p class="p text-center">Leave the first comment</p>
-        {%endif%}
+                {% endfor%}
+            {%else%}
+                <p class="p text-center">Leave the first comment</p>
+            {%endif%}
+        </div>
     </div>
 </div>
+</section>
 
 {% endblock %}
