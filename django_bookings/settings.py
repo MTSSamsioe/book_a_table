@@ -19,6 +19,7 @@ from django.contrib.messages import constants as messages
 if os.path.isfile("env.py"):
     import env
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
@@ -54,6 +55,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'debug_toolbar',
     'cloudinary',
+    
+    
 ]
 
 SITE_ID = 1
@@ -104,7 +107,7 @@ TEMPLATES = [
         },
     },
 ]
-# settings  from line 111 to 128 is taken from Boutique ado walkthrough project
+# settings 
 AUTHENTICATION_BACKENDS = [
     # Needed to login by username in Django admin, regardless of `allauth`
     'django.contrib.auth.backends.ModelBackend',
@@ -183,8 +186,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 
-STATICFILES_STORAGE = 'cloudinary_storage.storage.\
-    StaticHashedCloudinaryStorage'
+STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
