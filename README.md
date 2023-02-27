@@ -16,7 +16,7 @@ The base templates consist of sections that are shown on all pages. The sections
     - When the screen width is smaller than 990pixels the menu converts to a button in the top right coner
     - The nav section the user is on change color and get an underline to clearly show the user where on the site the user is.
     - The Navbar is shown on all pages and provides an easy and clear way to navigate through the site and therfore binging value to the user.
-![nav bar log out]( static {%%}
+![nav bar log out](/bookings/static/bookings/images/nav_bar_logged_out.png )
 - Messagess
     - Messages is displayed when the user take certain actions. Examples of such actions are creating, editing, deleting reservations, creating comments. Error messages are also displayed here.
     - Messages are displayed beneath the navbar. Error messages in red and confirmations in green
@@ -118,6 +118,7 @@ The base templates consist of sections that are shown on all pages. The sections
 - Ability to pick tables in different sizes
 - Calendar that shows available time slots for reservations
 
+
 ## Testing
 ---
 The site has been both manually tested and with some automated tests. How the site works is desribed in each section in the README file.
@@ -140,9 +141,10 @@ The site has been both manually tested and with some automated tests. How the si
     - Editing a reservation
         - Edit button takes user to edit page
         - All values are pre populated
-        - Update and cancel buttons work
+        - Update and cancel buttons works
         - Successfully submitted change shows an allert message
         - Wrongfully added changes gives a generic error message
+        - Trying to edit another users reservation via the url is shown an error message and a link back to bookings page
     - Deleting a Reservation
         - Delete button shows a warning modal
         - Delete button in modal successfully delete reservation
@@ -170,6 +172,8 @@ The site has been both manually tested and with some automated tests. How the si
     - edit.html with no errors 
     - index.html only errors from django template vars
     - my_bookings.html only errors from django variables
+    - page_not_found no errors
+    - server_error.html no errors
 - CSS using https://jigsaw.w3.org/
     - style.css no errors found
 
@@ -196,6 +200,13 @@ The site has been both manually tested and with some automated tests. How the si
     - Fix: i changed the character place on the split string method from 11:12 to 11:13
 - Function to avoid double reservations did not work
     Fix: I used a filte method to query reservatio times that collided but it did not seam to work so I made a for loop compare already done reservations with the reservation in the form. If the dates collided the loop ssubtracted the tables needed for that reservation with the resturants total number of tables fo two people.
+- Error approving comments
+    - Fix: it was a method string error in the model method that created a server error
+- Bug that allowed users to edit other users reservations
+    - Fix: Created a conditional that compared logged in user id with the id of the user that made reservation
+- Error in navigation when clicking on the menu
+    - Made changes to the view and file path
+
 ## Deployment
 ---
 - Create app on heroku
@@ -263,6 +274,9 @@ The site has been both manually tested and with some automated tests. How the si
     - https://www.youtube.com/watch?v=6-XXvUENY_8
 - How to render a pdf
     - https://www.codespeedy.com/show-a-pdf-file-in-django-instead-of-downloading/ 
+- Authentication settings for all auth taken from boutique ado project
+
+
 
 ### Content
 
@@ -285,6 +299,12 @@ The site has been both manually tested and with some automated tests. How the si
         - https://www.csestack.org/render-open-pdf-file-django/
     - How to log in a user in a test case before rrunning test:
         - https://micropyramid.com/blog/django-unit-test-cases-with-forms-and-views/ and also CI support
+    - How to resolve error that would not allow user to approve comments
+        - https://stackoverflow.com/questions/40618356/error-with-str-returned-non-string-type-int
+    - How to prevent users from editing other users reservations
+        - https://www.youtube.com/watch?v=Y1Us5jVT07E&list=PLCC34OHNcOtr025c1kHSPrnP18YPB-NFi&index=16
+    - How to create a custom 404 pagge
+        - https://www.youtube.com/watch?v=oX_XKlPJAQk
 
 ### Media
 - Pictures on site are taken from https://www.pexels.com/sv-se/

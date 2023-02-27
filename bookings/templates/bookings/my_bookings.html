@@ -43,7 +43,7 @@
                   <img src="https://res.cloudinary.com/dy2uthyxz/image/upload/v1666268050/pexels-creative-vix-370984_zgwft4.jpg" class="card-img-top" alt="picture of wineglass">
                   <div class="card-body">
                     <h5 class="card-title">Reservation at The Fuzzy Duck </h5>
-                    <p class="card-text">Below are some information about your reservvation</p>
+                    <p class="card-text">Below are some information about your reservation</p>
                   </div>
                   <ul class="list-group list-group-flush">
                     <li class="list-group-item"> {{reservation.first_name}} {{reservation.last_name}}</li>
@@ -75,9 +75,9 @@
               </div>
             </div>
             {% endfor %}
-            {%else%}
+            {% else %}
             <p class="p text-center">You have no reservations at the moment</p>
-        {%endif%}
+        {% endif %}
       </div>
     </div>
   {% else %}

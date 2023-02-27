@@ -21,6 +21,7 @@ GUESETS = ((1, '1'), (2, '2'), (3, '3'), (4, '4'),
 # Model for making reservation
 
 class Reservation(models.Model):
+    """ Model to handle reservations  """
 
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     first_name = models.CharField(max_length=80, blank=False, null=False)
@@ -32,7 +33,7 @@ class Reservation(models.Model):
                                                   .replace(tzinfo=pytz.UTC),
                                                   """Please pick a date
                                                   and time
-                                                  before present time""")])
+                                                  after present time""")])
     date_time_end = models.DateTimeField(null=True)
     number_of_guests = models.IntegerField(
                                            default=2, blank=False, null=False,
@@ -49,6 +50,9 @@ class Reservation(models.Model):
     # Function that prevent double bookings during a 120 minutes timeslot
 
     def clean(self):
+        """ Model method to prevent reservations outside
+        opening hours and before current """
+
         self.is_cleaned = True
         total_tables_for_two = 10
         date_time_form = self.date_time
@@ -75,7 +79,10 @@ class Reservation(models.Model):
         super(Reservation, self).clean()
 
     # Calc number of tables needed for reservation
+
     def save(self, *args, **kwargs):
+        """ Model method to prevent double bookings"""
+
         if not self.number_of_tables:
             new_number_of_tables = math.ceil(self.number_of_guests / 2)
             self.number_of_tables = new_number_of_tables
@@ -93,6 +100,7 @@ STARS = ((1, '1'), (2, '2'), (3, '3'), (4, '4'), (5, '5'), )
 
 
 class Comments(models.Model):
+    """ Model to store comments """
 
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING, null=True)
     created = models.DateTimeField(auto_now_add=True)
