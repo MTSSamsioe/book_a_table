@@ -5,7 +5,7 @@ from django.utils import timezone
 from django.contrib import messages
 from django.core.validators import MinValueValidator
 import math
-
+from django.forms import ValidationError
 # Section for reservations form
 
 # Code on how to style widgets are from:
@@ -35,6 +35,7 @@ class ReservationForm(forms.ModelForm):
                 'number_of_guests': 'Number Of Guests',
                 'date_time': 'Date & Time Opening Hours: 11.00 - 22.30',
         }
+
 # Section for comments form
 
 
